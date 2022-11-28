@@ -1,67 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MaterialApp(
-    title: 'Assets Application',
-    home: HomePage(),
-  ));
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+void main() => runApp(MyApp());
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blueGrey,
-      appBar: AppBar(
-        title: const Text('Halaman Utama'),
-      ),
-      body: Center(
-            child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                radius: 50.0,
-                backgroundImage: AssetImage('assets/image/pm.png'),
-              ),
-              Text(
-                'Pesulap Merah',
-                style: TextStyle(
-                  fontFamily: 'Lobster',
-                  fontSize: 40.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            
-        ElevatedButton(
-          child: const Text('Detail '),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const DetailPage()),
-            );
-          },
-        ),
-        ],
-      ),)
-    );
-  }
-}
-
-class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.green[200],
-      appBar: AppBar(
-        title: const Text('Halaman Detail'),
-      ),
-      body: Center(
-            child: Column(
+    return MaterialApp(
+      // Center(
+      home: Scaffold(
+        backgroundColor: Colors.indigo,
+        body: SafeArea(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               CircleAvatar(
@@ -137,13 +85,60 @@ class DetailPage extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
+                
+                onPressed: (){
+                Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context)=>const DetailPage()),
+                );
+              }, child: Text("Detail"))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatefulWidget {
+  const DetailPage({super.key});
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+      ),
+      body: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              CircleAvatar(
+                radius: 50.0,
+                backgroundImage: AssetImage('assets/image/pm.png'),
+              ),
+              Text(
+                'Pesulap Merah',
+                style: TextStyle(
+                  fontFamily: 'Lobster',
+                  fontSize: 40.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ElevatedButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Go back!'),
+          child: const Text('Kembali'),
         ),
             ]
-      ),)
+      ),),
     );
   }
 }
