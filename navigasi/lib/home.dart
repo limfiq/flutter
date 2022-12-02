@@ -88,22 +88,22 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.blue,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.production_quantity_limits_sharp),
             label: "Product",
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shop_sharp),
             label: "Shop",
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Profil",
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.yellow,
           ),
         ],
         currentIndex: _selectedIndex,
