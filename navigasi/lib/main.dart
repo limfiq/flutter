@@ -4,6 +4,7 @@ import 'home.dart';
 void main() {
   runApp(MaterialApp(
     title: "Login Page",
+    debugShowCheckedModeBanner: false,
     home: LoginPage(),
   ));
 }
@@ -32,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Container(
                   width: 150,
                   height: 150,
-                  child: Image.asset("images/user.png"),
+                  child: Image.asset("images/pm.png"),
                 ),
               ),
             ),

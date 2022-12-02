@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:navigasi/product.dart';
+import 'package:navigasi/shop.dart';
 import 'profil.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,22 +15,10 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      "Index : 0 Home",
-      style: optionStyle,
-    ),
-    Text(
-      "Index : 1 Product",
-      style: optionStyle,
-    ),
-    Text(
-      "Index : 2 Shop",
-      style: optionStyle,
-    ),
-    Text(
-      "Index : 3 Profil",
-      style: optionStyle,
-    ),
+    HomeData(),
+    ProductPage(),
+    ShopPage(),
+    ProfilPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -52,7 +42,7 @@ class _HomePageState extends State<HomePage> {
               child: const UserAccountsDrawerHeader(
                 currentAccountPicture: ClipOval(
                   child: Image(
-                    image: AssetImage("images/user.png"),
+                    image: AssetImage("images/pm.png"),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -98,27 +88,65 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
-            backgroundColor: Colors.blue,
+            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.production_quantity_limits_sharp),
             label: "Product",
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shop_sharp),
             label: "Shop",
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.white,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: "Profil",
-            backgroundColor: Colors.yellow,
+            backgroundColor: Colors.white,
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class HomeData extends StatelessWidget {
+  const HomeData({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _kTabPages = <Widget>[
+      const Center(child: Icon(Icons.home, size: 64.0, color: Colors.teal)),
+      const Center(
+          child: Icon(Icons.notification_add, size: 64.0, color: Colors.cyan)),
+      const Center(child: Icon(Icons.chat, size: 64.0, color: Colors.blue)),
+    ];
+    final _kTabs = <Tab>[
+      const Tab(icon: Icon(Icons.home), text: 'Tab1'),
+      const Tab(icon: Icon(Icons.notification_add), text: 'Tab2'),
+      const Tab(icon: Icon(Icons.chat), text: 'Tab3'),
+    ];
+    return DefaultTabController(
+      length: _kTabs.length,
+      child: Scaffold(
+        appBar: AppBar(
+          // title: const Text('appbar title'),
+          backgroundColor: Colors.cyan,
+          // If `TabController controller` is not provided, then a
+          // DefaultTabController ancestor must be provided instead.
+          // Another way is to use a self-defined controller, c.f. "Bottom tab
+          // bar" example.
+          bottom: TabBar(
+            tabs: _kTabs,
+          ),
+        ),
+        body: TabBarView(
+          children: _kTabPages,
+        ),
       ),
     );
   }

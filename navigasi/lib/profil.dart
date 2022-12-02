@@ -1,78 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'home.dart';
 
 class ProfilPage extends StatefulWidget {
+  const ProfilPage({Key? key}) : super(key: key);
+
   @override
   _ProfilPageState createState() => _ProfilPageState();
 }
 
 class _ProfilPageState extends State<ProfilPage> {
+  // GlobalKey is needed to show bottom sheet.
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      drawer: Drawer(
+      key: this._scaffoldKey,
+      body: Center(
         child: Column(
-          children: [
-            Container(
-              child: const UserAccountsDrawerHeader(
-                currentAccountPicture: ClipOval(
-                  child: Image(
-                    image: AssetImage("images/user.png"),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                accountName: Text(
-                  "Ufiq",
-                  style: TextStyle(fontSize: 20),
-                ),
-                accountEmail: Text("mtaufiq39@gmail.com"),
-              ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () => this
+                  ._scaffoldKey
+                  .currentState
+                  ?.showBottomSheet((ctx) => _buildBottomSheet(ctx)),
+              child: const Text('show bottom sheet'),
             ),
-            //menu
-            ListTile(
-              onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ),
-                );
-              },
-              leading: Icon(Icons.home),
-              title: Text("Home"),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => ProfilPage(),
-                  ),
-                );
-              },
-              leading: Icon(Icons.person),
-              title: Text("profil"),
+            ElevatedButton(
+              onPressed: () => showModalBottomSheet(
+                  context: context, builder: (ctx) => _buildBottomSheet(ctx)),
+              child: const Text('show modal bottom sheet'),
             ),
           ],
         ),
       ),
-      body: Center(
-        child: Container(
-          height: 80,
-          width: 150,
-          decoration: BoxDecoration(
-              color: Colors.blue, borderRadius: BorderRadius.circular(10)),
-          child: TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'Home',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () =>
+            Fluttertoast.showToast(msg: 'Dummy floating action button'),
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  Container _buildBottomSheet(BuildContext context) {
+    return Container(
+      height: 300,
+      padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.blue, width: 2.0),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: ListView(
+        children: <Widget>[
+          const ListTile(title: Text('Bottom sheet')),
+          const TextField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              icon: Icon(Icons.attach_money),
+              labelText: 'Enter an integer',
             ),
           ),
-        ),
+          Container(
+            alignment: Alignment.center,
+            child: ElevatedButton.icon(
+              icon: const Icon(Icons.save),
+              label: const Text('Save and close'),
+              onPressed: () => Navigator.pop(context),
+            ),
+          )
+        ],
       ),
     );
   }
