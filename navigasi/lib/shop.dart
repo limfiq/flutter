@@ -26,7 +26,7 @@ class ShopPage extends StatelessWidget {
     return DraggableScrollableSheet(
       initialChildSize: 0.2,
       minChildSize: 0.2,
-      maxChildSize: 0.8,
+      maxChildSize: 1,
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           decoration: const BoxDecoration(
