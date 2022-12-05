@@ -13,13 +13,17 @@ class _ProductPageState extends State<ProductPage>
 
   static const _kTabPages = <Widget>[
     Center(child: Icon(Icons.home, size: 64.0, color: Colors.teal)),
-    Center(child: Icon(Icons.notification_add, size: 64.0, color: Colors.cyan)),
-    Center(child: Icon(Icons.chat, size: 64.0, color: Colors.blue)),
+    Center(
+        child: Icon(Icons.production_quantity_limits_sharp,
+            size: 64.0, color: Colors.cyan)),
+    Center(child: Icon(Icons.shop_sharp, size: 64.0, color: Colors.blue)),
+    Center(child: Icon(Icons.people, size: 64.0, color: Colors.blue)),
   ];
   static const _kTabs = <Tab>[
-    Tab(icon: Icon(Icons.home), text: 'Tab1'),
-    Tab(icon: Icon(Icons.notification_add), text: 'Tab2'),
-    Tab(icon: Icon(Icons.chat), text: 'Tab3'),
+    Tab(icon: Icon(Icons.home), text: 'Home'),
+    Tab(icon: Icon(Icons.production_quantity_limits_sharp), text: 'Product'),
+    Tab(icon: Icon(Icons.shop_sharp), text: 'Shop'),
+    Tab(icon: Icon(Icons.people), text: 'Profil'),
   ];
 
   @override
