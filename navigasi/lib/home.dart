@@ -69,6 +69,28 @@ class _HomePageState extends State<HomePage> {
               onTap: () {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
+                    builder: (context) => ProductPage(),
+                  ),
+                );
+              },
+              leading: Icon(Icons.production_quantity_limits_sharp),
+              title: Text("Product"),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => ShopPage(),
+                  ),
+                );
+              },
+              leading: Icon(Icons.shop_sharp),
+              title: Text("Shop"),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
                     builder: (context) => ProfilPage(),
                   ),
                 );
@@ -119,7 +141,7 @@ class HomeData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _kTabPages = <Widget>[
+    final _TabPages = <Widget>[
       const Center(child: Icon(Icons.home, size: 64.0, color: Colors.teal)),
       const Center(
           child: Icon(Icons.notification_add, size: 64.0, color: Colors.cyan)),
@@ -145,7 +167,7 @@ class HomeData extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: _kTabPages,
+          children: _TabPages,
         ),
       ),
     );
