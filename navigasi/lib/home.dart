@@ -47,10 +47,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 accountName: Text(
-                  "Ufiq",
+                  "Pesulap Merah",
                   style: TextStyle(fontSize: 20),
                 ),
-                accountEmail: Text("mtaufiq39@gmail.com"),
+                accountEmail: Text("pm@gmail.com"),
               ),
             ),
             //menu
@@ -64,6 +64,28 @@ class _HomePageState extends State<HomePage> {
               },
               leading: Icon(Icons.home),
               title: Text("Home"),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => ProductPage(),
+                  ),
+                );
+              },
+              leading: Icon(Icons.production_quantity_limits_sharp),
+              title: Text("Product"),
+            ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => ShopPage(),
+                  ),
+                );
+              },
+              leading: Icon(Icons.shop_sharp),
+              title: Text("Shop"),
             ),
             ListTile(
               onTap: () {
@@ -119,16 +141,21 @@ class HomeData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _kTabPages = <Widget>[
+    final _TabPages = <Widget>[
       const Center(child: Icon(Icons.home, size: 64.0, color: Colors.teal)),
       const Center(
-          child: Icon(Icons.notification_add, size: 64.0, color: Colors.cyan)),
-      const Center(child: Icon(Icons.chat, size: 64.0, color: Colors.blue)),
+          child: Icon(Icons.production_quantity_limits_sharp,
+              size: 64.0, color: Colors.cyan)),
+      const Center(
+          child: Icon(Icons.shop_sharp, size: 64.0, color: Colors.blue)),
+      const Center(child: Icon(Icons.people, size: 64.0, color: Colors.blue)),
     ];
     final _kTabs = <Tab>[
-      const Tab(icon: Icon(Icons.home), text: 'Tab1'),
-      const Tab(icon: Icon(Icons.notification_add), text: 'Tab2'),
-      const Tab(icon: Icon(Icons.chat), text: 'Tab3'),
+      const Tab(icon: Icon(Icons.home), text: 'Home'),
+      const Tab(
+          icon: Icon(Icons.production_quantity_limits_sharp), text: 'Product'),
+      const Tab(icon: Icon(Icons.shop_sharp), text: 'Shop'),
+      const Tab(icon: Icon(Icons.people), text: 'Profil'),
     ];
     return DefaultTabController(
       length: _kTabs.length,
@@ -145,7 +172,7 @@ class HomeData extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: _kTabPages,
+          children: _TabPages,
         ),
       ),
     );
