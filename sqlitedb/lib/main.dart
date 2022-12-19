@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import 'home.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: HomePage(),
-  ));
-}
+//package letak folder Anda
+void main() => runApp(MyApp());
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      //judul
+      title: 'Tambahkan Daftar',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: Home(),
+    );
   }
 }
