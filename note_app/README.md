@@ -1,16 +1,14 @@
 # note_app
 
-A new Flutter project.
+This project content Note App with crud process using MySQL database and Native Backend PHP
 
-## Getting Started
+## Preparation
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone this project 
+2. Place this project any where.
+3. Create database MySQL (note_app)
+4. Import database note from folder backend.
+5. Copy and paste content of note.zip to htdocs
+6. Edit connection from file
+7. Enjoy it
+Happy learning
