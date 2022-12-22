@@ -6,6 +6,7 @@ import 'package:note_app/note.dart';
 void main() {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     ),
   );
@@ -21,7 +22,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late Future data;
   List<Note> data2 = [];
-
+  bool isCari = false;
+  TextEditingController cariText = TextEditingController();
   @override
   void initState() {
     data = NoteService().getNote();
@@ -37,10 +39,30 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            ".: Note App :.",
-            style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "Roboto"),
-          ),
+          title: !isCari
+              ? Text(
+                  ".: Note App :.",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontFamily: "Roboto"),
+                )
+              : TextField(
+                  controller: cariText,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontFamily: "Roboto"),
+                  decoration: InputDecoration(
+                      hintText: "Cari Data",
+                      hintStyle: TextStyle(color: Colors.green)),
+                  onSubmitted: (value) {},
+                ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    this.isCari = !this.isCari;
+                  });
+                },
+                icon: Icon(Icons.search))
+          ],
         ),
         body: data2.length == 0
             ? Center(
@@ -51,8 +73,12 @@ class _HomePageState extends State<HomePage> {
             : ListView.builder(
                 itemCount: data2.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(data2[index].title),
+                  return Card(
+                    color: Colors.blueGrey,
+                    child: ListTile(
+                      title: Text("Tulisan Ke-" + data2[index].id),
+                      subtitle: Text(data2[index].title),
+                    ),
                   );
                 }));
   }
