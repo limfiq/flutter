@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/noteService.dart';
+
+import 'package:note_app/note.dart';
 
 void main() {
   runApp(
@@ -16,6 +19,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late Future data;
+  List<Note> data2 = [];
+
+  @override
+  void initState() {
+    data = NoteService().getNote();
+    data.then((value) {
+      setState(() {
+        data2 = value;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,25 +42,18 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "Roboto"),
           ),
         ),
-        body: ListView(
-          padding: const EdgeInsets.all(8),
-          children: <Widget>[
-            Container(
-              height: 50,
-              color: Colors.amber[600],
-              child: const Center(child: Text('Entry A')),
-            ),
-            Container(
-              height: 50,
-              color: Colors.amber[500],
-              child: const Center(child: Text('Entry B')),
-            ),
-            Container(
-              height: 50,
-              color: Colors.amber[100],
-              child: const Center(child: Text('Entry C')),
-            ),
-          ],
-        ));
+        body: data2.length == 0
+            ? Center(
+                child: CircularProgressIndicator(
+                  color: Colors.blue,
+                ),
+              )
+            : ListView.builder(
+                itemCount: data2.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(data2[index].title),
+                  );
+                }));
   }
 }
