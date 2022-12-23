@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=E:\Android\Flutter"
-export "FLUTTER_APPLICATION_PATH=E:\flutter\flutter\passing"
+export "FLUTTER_ROOT=/home/ufiq/Android/flutter"
+export "FLUTTER_APPLICATION_PATH=/media/ufiq/Proyek/Github/flutter/passing"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
