@@ -2,11 +2,12 @@
 
 Assalamualaikum. War. Wab.
 
-Didalam folder ini kita akan mempelajari berbagai dasar flutter widget dan project.
-isi folder ini adalah project untuk:
-1. StateApp => belajar bagaimana bedanya stateless dan statefull
-2. LayoutApp => belajar tentang layout yang ada didalam flutter
-3. AssetsApp => belajar bagaimana menambahkan assets berupa font dan image serta implementasi route
-4. NavigasiApp => belajar bagaimana membuat menu navigasi antar halaman
-5. SqlitedbApp => belajar crud dengan db sqlite
+in this Repository you will found.<br>
+#Folder Content:
+1. StateApp => Different Stateless and Statefull project
+2. LayoutApp => Using Layout
+3. AssetsApp => Using assets and Route
+4. NavigasiApp => Create Navigation APP 
+5. SqlitedbApp => CRUD SQLite Database
+6. Note_app => CRUD MySQL database using Native PHP Backend <br>
 Happy Learning
