@@ -1,38 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/addNote.dart';
-import 'package:note_app/noteService.dart';
 
-import 'package:note_app/note.dart';
-import 'package:note_app/search.dart';
+import 'note.dart';
+import 'noteService.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    ),
-  );
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SearchNote extends StatefulWidget {
+  late String keyword;
+  SearchNote({required this.keyword});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SearchNote> createState() => _SearchNoteState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SearchNoteState extends State<SearchNote> {
   late Future data;
   List<Note> data2 = [];
   bool isCari = false;
   TextEditingController cariText = TextEditingController();
-
+  bool cekData = true;
   @override
   void initState() {
     data = NoteService().getNote();
     data.then((value) {
       setState(() {
         data2 = value;
+        data2
+            .where((element) =>
+                element.title
+                    .toLowerCase()
+                    .contains(widget.keyword.toLowerCase()) ||
+                element.id
+                    .toString()
+                    .toLowerCase()
+                    .contains(widget.keyword.toLowerCase()))
+            .toList();
+        if (data2.length == 0) {
+          cekData = false;
+        }
       });
     });
     super.initState();
@@ -72,11 +75,18 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: data2.length == 0
-            ? Center(
-                child: CircularProgressIndicator(
-                  color: Colors.blue,
-                ),
-              )
+            ? cekData
+                ? Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.blue,
+                    ),
+                  )
+                : Center(
+                    child: Text(
+                      "Maaf !! Tidak ada data yang dicari",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  )
             : ListView.builder(
                 itemCount: data2.length,
                 itemBuilder: (context, index) {
@@ -87,15 +97,6 @@ class _HomePageState extends State<HomePage> {
                       subtitle: Text(data2[index].title),
                     ),
                   );
-                },
-              ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddNote()));
-          },
-          tooltip: "Tambah Data",
-          child: Icon(Icons.add),
-        ));
+                }));
   }
 }
