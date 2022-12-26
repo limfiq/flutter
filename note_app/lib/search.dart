@@ -23,7 +23,7 @@ class _SearchNoteState extends State<SearchNote> {
     data.then((value) {
       setState(() {
         data2 = value;
-        data2
+        data2 = data2
             .where((element) =>
                 element.title
                     .toLowerCase()
