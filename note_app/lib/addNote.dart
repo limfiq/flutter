@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:note_app/search.dart';
 import 'package:note_app/noteService.dart';
+import 'package:note_app/note.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class AddNote extends StatefulWidget {
   const AddNote({super.key});
@@ -17,6 +19,53 @@ class _AddNoteState extends State<AddNote> {
   TextEditingController titleText = TextEditingController();
   TextEditingController contentText = TextEditingController();
   TextEditingController dateText = TextEditingController();
+  TextEditingController idText = TextEditingController();
+  int count = 0;
+
+  void createData() {
+    NoteService()
+        .saveNote(idText.text, titleText.text, contentText.text, dateText.text)
+        .then((value) {
+      setState(() {
+        if (value) {
+          Alert(
+              context: context,
+              title: "Berhasil",
+              desc: "Data berhasil ditambahkan",
+              type: AlertType.success,
+              buttons: [
+                DialogButton(
+                  child: Text(
+                    "OK",
+                    style: TextStyle(fontSize: 26),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).popUntil((_) => count++ >= 2);
+                  },
+                ),
+              ]).show();
+        } else {
+          Alert(
+            context: context,
+            title: "Gagal",
+            desc: "Data gagal ditambahkan",
+            type: AlertType.success,
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "OK",
+                  style: TextStyle(fontSize: 26),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ).show();
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
