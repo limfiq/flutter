@@ -38,7 +38,7 @@ class HomeState extends State<Home> {
       final response = await http.get(Uri.parse(
           //you have to take the ip address of your computer.
           //because using localhost will cause an error
-          "http://192.168.1.13/note/list.php"));
+          "http://midugrogol.sch.id/api/list.php"));
 
       // if response successful
       if (response.statusCode == 200) {

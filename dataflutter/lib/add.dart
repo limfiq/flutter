@@ -22,7 +22,7 @@ class _AddState extends State<Add> {
   Future _onSubmit() async {
     try {
       return await http.post(
-        Uri.parse("http://192.168.1.13/note/create.php"),
+        Uri.parse("https://midugrogol.sch.id/api/create.php"),
         body: {
           "title": title.text,
           "content": content.text,

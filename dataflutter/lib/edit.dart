@@ -35,7 +35,7 @@ class _EditState extends State<Edit> {
           //you have to take the ip address of your computer.
           //because using localhost will cause an error
           //get detail data with id
-          "http://192.168.1.13/note/detail.php?id='${widget.id}'"));
+          "https://midugrogol.sch.id/api/detail.php?id='${widget.id}'"));
 
       // if response successful
       if (response.statusCode == 200) {
@@ -54,7 +54,7 @@ class _EditState extends State<Edit> {
   Future _onUpdate(context) async {
     try {
       return await http.post(
-        Uri.parse("http://192.168.1.13/note/update.php"),
+        Uri.parse("http://midugrogol.sch.id/api/update.php"),
         body: {
           "id": widget.id,
           "title": title.text,
@@ -77,7 +77,7 @@ class _EditState extends State<Edit> {
   Future _onDelete(context) async {
     try {
       return await http.post(
-        Uri.parse("http://192.168.1.13/note/delete.php"),
+        Uri.parse("https://midugrogol.sch.od/api/delete.php"),
         body: {
           "id": widget.id,
         },
